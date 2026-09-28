@@ -24,7 +24,7 @@ function Modal({
   post,
   onClose,
 }: {
-  post: post;
+  post: Post;
   onClose: () => void;
 }) {
   return (
