@@ -113,7 +113,7 @@ export default function RankPage() {
       .select('*')
       //.gte('likes', 50)
       .order('likes', {ascending: false})
-      .range(0, 20)
+      .range(0, 11)
 
 
 
