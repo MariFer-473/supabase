@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { getTimeAgo } from "./utils/time";
 import { type Post } from "./mocks/posts";
-import { supabase } from "./Lib/supabase";
+import { supabase } from "./lib/supabase";
 import HeartIcon from "./components/Heardcon";
 
 

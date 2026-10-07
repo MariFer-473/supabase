@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Post } from "../mocks/posts";
 import HeartIcon from "../components/Heardcon";
 import Modal from "../components/Modal";
-import { supabase } from "../Lib/supabase";
+import { supabase } from "../lib/supabase";
 
 
 export default function RankPage() {
