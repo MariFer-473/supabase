@@ -1,24 +1,39 @@
 import Image from "next/image";
-import HeartIcon from "./Heardcon";
 import { getTimeAgo } from "../utils/time";
-import { Post } from "../mocks/posts";
+import HeartIcon from "./Heardcon";
+import { Post, PostCardProps } from "../types";
 
-function PostCard({ post, onLike }: { post: Post; onLike: (id: number | string) => void }) {
+const DEFAULT_AVATAR = "/user.png"
+
+export default function PostCard({ post, onLike }: PostCardProps) {
+
+  const username = post.profile?.username || "default user"
+  const avatarUrl = post.profile?.avatar_url || DEFAULT_AVATAR
+
   return (
     <article className="bg-card-bg border border-border rounded-xl overflow-hidden shadow-sm">
       {/* Header con usuario y avatar */}
       <div className="flex items-center gap-3 p-4">
         <div className="relative w-10 h-10 rounded-full overflow-hidden ring-2 ring-primary">
-          <Image
-            src={post.user?.avatar || 'https://vzhfyibobsgszzgrtont.supabase.co/storage/v1/object/sign/Supagram/profiles/yo.png?token=eyJraWQiOiJhODNlYThjMS00MmIyLTQyMjktOWJjMy1jYTMzMjUzZGU0MWYiLCJhbGciOiJIUzUxMiJ9.eyJ1cmwiOiJTdXBhZ3JhbS9wcm9maWxlcy95by5wbmciLCJzY29wZSI6ImRvd25sb2FkIiwiaWF0IjoxNzkwMTk0MDc3LCJleHAiOjE3OTA3OTg4Nzd9.IEyr8ojMm_q7YBVkbgvekqu5yBdaMfm7PfsAhCGOcyRPiICO_W-cBKCUM0QGW6V5fv2W7S_zoO2m9GJ4z6ZMYw'}
-            alt={post.user?.username || 'default user'}
-            fill
-            className="object-cover"
-          />
+          {
+            avatarUrl ? (
+              <Image
+                src={avatarUrl}
+                alt={username}
+                fill
+                className="object-cover"
+              />
+            ) : (
+                <div className="w-full h-full flex items-center justify-center text-lg text-foreground/40">
+                  {username.charAt(0).toUpperCase()}
+                </div>  
+            )
+          } 
+          
         </div>
         <div className="flex flex-col">
-          <span className="font-semibold text-foreground">{post.user?.username || 'default user'}</span>
-          <span className="text-xs text-foreground/50">{getTimeAgo(new Date (post.created_at))}</span>
+          <span className="font-semibold text-foreground">@{username}</span>
+          <span className="text-xs text-foreground/50">{getTimeAgo(new Date(post.created_at))}</span>
         </div>
       </div>
 
@@ -26,7 +41,7 @@ function PostCard({ post, onLike }: { post: Post; onLike: (id: number | string) 
       <div className="relative w-full aspect-square">
         <Image
           src={post.image_url}
-          alt={`Post de ${post.user?.username || 'default user'}`}
+          alt={`Post de ${username}`}
           fill
           className="object-cover"
         />
@@ -50,7 +65,7 @@ function PostCard({ post, onLike }: { post: Post; onLike: (id: number | string) 
 
         {/* Caption */}
         <p className="mt-2 text-foreground">
-          <span className="font-semibold">{post.user?.username || 'default user'}</span>{" "}
+          <span className="font-semibold">@{username}</span>{" "}
           <span className="text-foreground/80">{post.caption}</span>
         </p>
       </div>
