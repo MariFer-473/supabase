@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
-import HeartIcon from "../components/Heardcon";
 import { supabase } from "../lib/supabase";
+import { HeartIcon } from "../components/Heardcon";
 import { Post } from "../types";
 
 
