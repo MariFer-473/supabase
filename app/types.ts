@@ -13,6 +13,7 @@ export interface Comment {
 }
 
 export interface Post {
+  likes: any;
   id: number | string;
   user_id: string;
   profile?: Profile;
